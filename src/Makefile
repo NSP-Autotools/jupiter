@@ -1,7 +1,7 @@
 CFLAGS = -g -O0
 
 src/jupiter: src/main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ src/main.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -Isrc -I$(srcdir)/src -I. -o $@ $(srcdir)/src/main.c
 
 check: all
 	./src/jupiter | grep "Hello from .*jupiter!"
