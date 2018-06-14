@@ -11,12 +11,16 @@ prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
 
+# VPATH-specific substitution variables
+srcdir = @srcdir@
+VPATH = @srcdir@
+
 CFLAGS = -g -O0
 
 all: jupiter
 
 jupiter: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ main.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ $(srcdir)/main.c
 
 check: all
 	./jupiter | grep "Hello from .*jupiter!"

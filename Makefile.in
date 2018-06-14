@@ -11,6 +11,10 @@ prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
 
+# VPATH-specific substitution variables
+srcdir = @srcdir@
+VPATH = @srcdir@
+
 all clean check install uninstall jupiter:
 	cd src && $(MAKE) $@
 
@@ -22,10 +26,10 @@ $(distdir).tar.gz: $(distdir)
 
 $(distdir): FORCE
 	mkdir -p $(distdir)/src
-	cp configure.ac $(distdir)
-	cp configure $(distdir)
-	cp Makefile.in $(distdir)
-	cp src/Makefile.in src/main.c $(distdir)/src
+	cp $(srcdir)/configure.ac $(distdir)
+	cp $(srcdir)/configure $(distdir)
+	cp $(srcdir)/Makefile.in $(distdir)
+	cp $(srcdir)/src/Makefile.in $(srcdir)/src/main.c $(distdir)/src
 
 distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -
