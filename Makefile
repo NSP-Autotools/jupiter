@@ -24,6 +24,8 @@ distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -
 	cd $(distdir) && $(MAKE) all
 	cd $(distdir) && $(MAKE) check
+	cd $(distdir) && $(MAKE) prefix=$${PWD}/_inst install
+	cd $(distdir) && $(MAKE) prefix=$${PWD}/_inst uninstall
 	cd $(distdir) && $(MAKE) clean
 	rm -rf $(distdir)
 	@echo "*** Package $(distdir).tar.gz is ready for distibution."
