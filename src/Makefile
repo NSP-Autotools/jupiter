@@ -1,7 +1,9 @@
+CFLAGS = -g -O0
+
 all: jupiter
 
 jupiter: main.c
-	gcc -g -O0 -o $@ main.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ main.c
 
 check: all
 	./jupiter | grep "Hello from .*jupiter!"
