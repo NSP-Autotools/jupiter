@@ -20,7 +20,7 @@ CFLAGS = -g -O0
 all: jupiter
 
 jupiter: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ $(srcdir)/main.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -I. -I$(srcdir) -I.. -o $@ $(srcdir)/main.c
 
 check: all
 	./jupiter | grep "Hello from .*jupiter!"
