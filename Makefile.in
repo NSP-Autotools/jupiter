@@ -1,14 +1,15 @@
-package = jupiter
-version = 1.0
-tarname = $(package)
+# @configure_input@
+
+# Package-specific substitution variables
+package = @PACKAGE_NAME@
+version = @PACKAGE_VERSION@
+tarname = @PACKAGE_TARNAME@
 distdir = $(tarname)-$(version)
 
-prefix = /usr/local
-exec_prefix = $(prefix)
-bindir = $(exec_prefix)/bin
-export prefix
-export exec_prefix
-export bindir
+# Prefix-specific substition variables
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
 
 all clean check install uninstall jupiter:
 	cd src && $(MAKE) $@
@@ -21,11 +22,14 @@ $(distdir).tar.gz: $(distdir)
 
 $(distdir): FORCE
 	mkdir -p $(distdir)/src
-	cp Makefile $(distdir)
-	cp src/Makefile src/main.c $(distdir)/src
+	cp configure.ac $(distdir)
+	cp configure $(distdir)
+	cp Makefile.in $(distdir)
+	cp src/Makefile.in src/main.c $(distdir)/src
 
 distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -
+	cd $(distdir) && ./configure
 	cd $(distdir) && $(MAKE) all
 	cd $(distdir) && $(MAKE) check
 	cd $(distdir) && $(MAKE) DESTDIR=$${PWD}/_inst install
@@ -42,5 +46,11 @@ distcheck: $(distdir).tar.gz
 FORCE:
 	rm -f $(distdir).tar.gz
 	rm -rf $(distdir)
+
+Makefile: Makefile.in config.status
+	./config.status $@
+
+config.status: configure
+	./config.status --recheck
 
 .PHONY: FORCE all clean check dist distcheck install uninstall
