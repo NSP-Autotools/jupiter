@@ -19,6 +19,7 @@ VPATH = @srcdir@
 CC = @CC@
 CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
+DEFS = @DEFS@
 LIBS = @LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -28,7 +29,7 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 all: jupiter
 
 jupiter: main.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -I. -I$(srcdir) -I.. -o $@ $(srcdir)/main.c $(LIBS)
+	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -I. -I$(srcdir) -I.. -o $@ $(srcdir)/main.c $(LIBS)
 
 check: all
 	./jupiter | grep "Hello from .*jupiter!"
