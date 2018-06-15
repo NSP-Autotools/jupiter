@@ -15,7 +15,10 @@ bindir = @bindir@
 srcdir = @srcdir@
 VPATH = @srcdir@
 
-CFLAGS = -g -O0
+# Tool-specific substitution variables
+CC = @CC@
+CFLAGS = @CFLAGS@
+CPPFLAGS = @CPPFLAGS@
 
 all: jupiter
 
