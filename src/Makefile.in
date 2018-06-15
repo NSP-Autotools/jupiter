@@ -1,0 +1,33 @@
+# @configure_input@
+
+# Tool-specific substitution variables
+CC = @CC@
+CFLAGS = @CFLAGS@
+CPPFLAGS = @CPPFLAGS@
+DEFS = @DEFS@
+LIBS = @LIBS@
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+
+src/jupiter: src/main.c
+	$(CC) $(DEFS) $(CPPFLAGS) $(CFLAGS) -Isrc -I$(srcdir)/src -I. -o $@ $(srcdir)/src/main.c $(LIBS)
+
+check: all
+	./src/jupiter | grep "Hello from .*jupiter!"
+	@echo "*** ALL TESTS PASSED ***"
+
+install:
+	$(INSTALL) -d $(DESTDIR)$(bindir)
+	$(INSTALL_PROGRAM) -m 0755 src/jupiter $(DESTDIR)$(bindir)
+
+uninstall:
+	rm -f $(DESTDIR)$(bindir)/jupiter
+	-rmdir $(DESTDIR)$(bindir) >/dev/null 2>&1
+
+clean:
+	rm -f src/jupiter
+
+src/Makefile: src/Makefile.in config.status
+	./config.status src/$@

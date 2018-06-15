@@ -30,7 +30,7 @@ $(distdir): FORCE
 	cp $(srcdir)/config.h.in $(distdir)
 	cp $(srcdir)/install-sh $(distdir)
 	cp $(srcdir)/Makefile.in $(distdir)
-	cp $(srcdir)/src/Makefile $(srcdir)/src/main.c $(distdir)/src
+	cp $(srcdir)/src/Makefile.in $(srcdir)/src/main.c $(distdir)/src
 
 distcheck: $(distdir).tar.gz
 	gzip -cd $(distdir).tar.gz | tar xvf -
