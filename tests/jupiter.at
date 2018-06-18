@@ -1,0 +1,3 @@
+AT_SETUP([jupiter-execution])
+AT_CHECK([../src/jupiter],,[Hello from ../src/.libs/lt-jupiter!])
+AT_CLEANUP
