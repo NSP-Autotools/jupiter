@@ -4,13 +4,14 @@
 AC_PREREQ([2.69])
 AC_INIT([Jupiter], [1.0], [jupiter-bugs@example.org])
 AM_INIT_AUTOMAKE
+LT_PREREQ([2.4.6])
+LT_INIT([dlopen])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
-AC_PROG_RANLIB
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h])
@@ -51,6 +52,8 @@ fi
 
 AC_CONFIG_FILES([Makefile
                  common/Makefile
+                 include/Makefile
+                 libjup/Makefile
                  src/Makefile])
 AC_OUTPUT
 
