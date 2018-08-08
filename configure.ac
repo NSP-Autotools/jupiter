@@ -14,7 +14,7 @@ AC_PROG_CC
 AC_PROG_INSTALL
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdlib.h])
+AC_CHECK_HEADERS([stdlib.h dlfcn.h])
 
 # Checks for command-line options
 AC_ARG_ENABLE([async-exec],
@@ -49,12 +49,14 @@ fi
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
+AC_SEARCH_LIBS([dlopen], [dl])
 
 AC_CONFIG_FILES([Makefile
                  common/Makefile
                  include/Makefile
                  libjup/Makefile
-                 src/Makefile])
+                 src/Makefile
+                 src/modules/hithere/Makefile])
 AC_OUTPUT
 
 cat << EOF
@@ -64,6 +66,7 @@ ${PACKAGE_NAME} Version ${PACKAGE_VERSION}
 
 Prefix: '${prefix}'.
 Compiler: '${CC} ${CFLAGS} ${CPPFLAGS}'
+Libraries: '${LIBS}'
 
 Package features:
   Async Execution: ${async_exec}
