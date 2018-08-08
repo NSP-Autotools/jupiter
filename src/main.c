@@ -2,7 +2,10 @@
 
 #include "libjupiter.h"
 
+#define DEFAULT_SALUTATION "Hello"
+
 int main(int argc, char * argv[])
 {
-    return jupiter_print(argv[0]);
+    const char * salutation = DEFAULT_SALUTATION;
+    return jupiter_print(salutation, argv[0]);
 }

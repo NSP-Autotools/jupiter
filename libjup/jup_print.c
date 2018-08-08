@@ -3,7 +3,7 @@
 #include "libjupiter.h"
 #include "jupcommon.h"
 
-int jupiter_print(const char * name)
+int jupiter_print(const char * salutation, const char * name)
 {
-    return print_routine(name);
+    return print_routine(salutation, name);
 }
