@@ -1,19 +1,5 @@
 AT_SETUP([jupiter-execution])
-
-set -x
-find_jupiter()
-{
-  if test "x${AUTOTEST_PATH}" == "x${at_testdir}"; then
-    jupiter="${abs_top_builddir}/src/jupiter"
-    compare="$(dirname "${jupiter}")/.libs/lt-jupiter"
-  else
-    jupiter="${AUTOTEST_PATH}/jupiter"
-    LD_LIBRARY_PATH="${AUTOTEST_PATH}/../lib" export LD_LIBRARY_PATH
-    compare="${jupiter}"
-  fi
-}
-
-find_jupiter
+FIND_JUPITER
 AT_CHECK_UNQUOTED(["${jupiter}"],,
                   [Hello from ${compare}!
 ])

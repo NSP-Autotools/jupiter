@@ -1,1 +1,11 @@
 AT_INIT
+
+m4_define([FIND_JUPITER], [[set -x
+if test "x${AUTOTEST_PATH}" == "x${at_testdir}"; then
+  jupiter="${abs_top_builddir}/src/jupiter"
+  compare="$(dirname "${jupiter}")/.libs/lt-jupiter"
+else
+  LD_LIBRARY_PATH="${AUTOTEST_PATH}/../lib" export LD_LIBRARY_PATH
+  jupiter="${AUTOTEST_PATH}/jupiter"
+  compare="${jupiter}"
+fi]])
