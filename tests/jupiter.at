@@ -1,3 +1,5 @@
 AT_SETUP([jupiter-execution])
-AT_CHECK([../src/jupiter],,[Hello from ../src/.libs/lt-jupiter!])
+AT_CHECK_UNQUOTED(["${abs_top_builddir}"/src/jupiter],,
+                  [Hello from ${abs_top_builddir}/src/.libs/lt-jupiter!
+])
 AT_CLEANUP
