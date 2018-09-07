@@ -9,6 +9,10 @@ LT_INIT([dlopen])
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CONFIG_TESTDIR([tests])
+AC_CONFIG_FILES([tests/Makefile
+                 tests/atlocal])
+
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
@@ -40,6 +44,7 @@ if test "x${async_exec}" = xyes; then
     fi
 fi
 
+AC_SUBST([async_exec])
 if test "x${async_exec}" = xyes; then
     AC_DEFINE([ASYNC_EXEC], [1], [async execution enabled])
 fi
