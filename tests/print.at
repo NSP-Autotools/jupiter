@@ -1,0 +1,3 @@
+AT_SETUP([print])
+AT_CHECK(["${abs_top_builddir}/common/test_print"])
+AT_CLEANUP

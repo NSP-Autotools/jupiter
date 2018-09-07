@@ -1,6 +1,6 @@
 TESTSUITE = $(srcdir)/testsuite
 TESTSOURCES = $(srcdir)/local.at $(srcdir)/testsuite.at \
-  $(srcdir)/jupiter.at
+  $(srcdir)/jupiter.at $(srcdir)/print.at
 AUTOM4TE = $(SHELL) $(top_srcdir)/missing --run autom4te
 AUTOTEST = $(AUTOM4TE) --language=autotest
 
