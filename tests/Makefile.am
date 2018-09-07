@@ -1,3 +1,6 @@
+EXTRA_DIST = testsuite.at local.at jupiter.at print.at \
+  $(TESTSUITE) atconfig package.m4
+
 TESTSUITE = $(srcdir)/testsuite
 TESTSOURCES = $(srcdir)/local.at $(srcdir)/testsuite.at \
   $(srcdir)/jupiter.at $(srcdir)/print.at
@@ -6,6 +9,9 @@ AUTOTEST = $(AUTOM4TE) --language=autotest
 
 check-local: atconfig atlocal $(TESTSUITE)
 	$(SHELL) '$(TESTSUITE)' $(TESTSUITEFLAGS)
+
+installcheck-local: atconfig atlocal $(TESTSUITE)
+	$(SHELL) '$(TESTSUITE)' AUTOTEST_PATH='$(DESTDIR)$(bindir)' $(TESTSUITEFLAGS)
 
 atconfig: $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status tests/$@
